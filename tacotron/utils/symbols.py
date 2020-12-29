@@ -8,7 +8,7 @@ from . import cmudict
 
 _pad        = '_'
 _eos        = '~'
-_characters = 'AĄBCČDEĘĖFGHIĮJKLMNOPQRSŠTUŲŪVWXYZŽaąbcčdeęėfghiįjklmnopqrsštuųūvwxyzž!\'(),-.:;? \x0300\x0301\x0303'
+_characters = 'AĄBCČDEĘĖFGHIĮJKLMNOPQRSŠTUŲŪVWXYZŽaąbcčdeęėfghiįjklmnopqrsštuųūvwxyzž!\'(),-.:;? \u0300\u0301\u0303'
 
 # Export all symbols:
 symbols = [_pad, _eos] + list(_characters)
