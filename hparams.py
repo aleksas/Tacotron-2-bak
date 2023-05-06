@@ -360,7 +360,7 @@ hparams = tf.contrib.training.HParams(
 	'Pasak jo, IT specialistų poreikio problemas ketinama spręsti didinant valstybės užsakymų dalį į šias specialybes, pagerinus studijų apmokėjimo sąlygas.',
 	'Tyrime pateikiamos išvados, kad sparčiausiai turėtų augti stambios IT įmonės, o vidutinio dydžio IT įmonės konkuruos su didelėmis ir didins atlyginimus, o tai kels IT paslaugų ir produktų kainas.',
 	'Be to, problemų turės ir startuolių įmonės, nes šioms bus sunku pritraukti kvalifikuotų specialistų.',
-	]
+	],
 
 	#Wavenet Debug
 	wavenet_synth_debug = False, #Set True to use target as debug in WaveNet synthesis. 
