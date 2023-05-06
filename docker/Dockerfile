@@ -10,7 +10,7 @@ RUN dpkg -i libav-tools_3.3.4-2_all.deb
 RUN wget http://data.keithito.com/data/speech/LJSpeech-1.1.tar.bz2
 RUN tar -jxvf LJSpeech-1.1.tar.bz2
 
-RUN git clone https://github.com/Cyancey96/Tacotron-2.git
+RUN git clone https://github.com/aleksas/Tacotron-2.git
 
 WORKDIR Tacotron-2
 RUN ln -s ../LJSpeech-1.1 .
