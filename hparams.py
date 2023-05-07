@@ -78,7 +78,7 @@ hparams = tf.contrib.training.HParams(
 	#Mel spectrogram
 	n_fft = 1024, #Extra window size is filled with 0 paddings to match this parameter
 	hop_size = 256, #For 22050Hz, 275 ~= 12.5 ms
-	win_size = None, #For 22050Hz, 1100 ~= 50 ms (If None, win_size = n_fft)
+	win_size = 1100, #For 22050Hz, 1100 ~= 50 ms (If None, win_size = n_fft)
 	sample_rate = 22050, #22050 Hz (corresponding to ljspeech dataset)
 	frame_shift_ms = None,
 	magnitude_power = 1., #The power of the spectrogram magnitude (1. for energy, 2. for power)
