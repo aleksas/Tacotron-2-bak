@@ -1,0 +1,14 @@
+version: "3.4"
+
+services:
+  tacotron-2:
+    image: aleksas/tacotron-2
+    build:
+      context: .
+    ports:
+    - 8888:8888
+    - 6006:6006
+    volumes:
+    - ./training_data:/root/Tacotron-2/training_data
+
+
