@@ -10,6 +10,7 @@ from os.path import join, splitext, isdir, exists
 
 import codecs
 import chardet
+import string
 
 def build_from_path(hparams, input_dirs, max_files_per_speaker, mel_dir, linear_dir, wav_dir, n_jobs=12, tqdm=lambda x: x):
     """
@@ -34,9 +35,13 @@ def build_from_path(hparams, input_dirs, max_files_per_speaker, mel_dir, linear_
     executor = ProcessPoolExecutor(max_workers=n_jobs)
     futures = []
     index = 1
+    translating = str.maketrans('', '', string.punctuation)
     for input_dir in input_dirs:
         transcript_lines = load_lines(join(input_dir, 'db_tr.txt'))
         for id, wav_path in collect_files(input_dir, len(transcript_lines), max_files_per_speaker):
+            if has_punctuation(transcript_lines[id]):
+                line_no_puntuation = transcript_lines[id].translate(translating)
+                futures.append(executor.submit(partial(_process_utterance, mel_dir, linear_dir, wav_dir, index, wav_path, line_no_puntuation, hparams)))
             futures.append(executor.submit(partial(_process_utterance, mel_dir, linear_dir, wav_dir, index, wav_path, transcript_lines[id], hparams)))
             index += 1
 
@@ -53,6 +58,9 @@ def load_lines(txt_path):
 def get_sentence_subdirectories(a_dir):
     return [name for name in listdir(a_dir)
         if isdir(join(a_dir, name))]
+
+def has_punctuation(word):
+    return any(char in string.punctuation for char in word)
 
 def collect_files(speaker_dir, tr_len, max_files_per_speaker=None):
     """Collect wav files for specific speakers.
